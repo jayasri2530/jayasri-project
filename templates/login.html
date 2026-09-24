@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Form</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #222222;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 100vh;
+            transition: 0.3s;
+        }
+
+        .login-container {
+            width: 350px;
+            padding: 30px;
+            border-radius: 12px;
+
+            background-color: #f5f5f5;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+
+            transition: 0.3s;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 11px;
+            margin-top: 25px;
+
+            border: none;
+            border-radius: 6px;
+
+            background-color: #222;
+            color: white;
+
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-btn:hover {
+            opacity: 0.85;
+        }
+
+        /* Theme button */
+        .theme-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+
+            background-color: #222;
+            color: white;
+
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* DARK MODE */
+        body.dark {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        body.dark .login-container {
+            background-color: #1e1e1e;
+            box-shadow: 0 5px 20px rgba(255,255,255,0.08);
+        }
+
+        body.dark input {
+            background-color: #2b2b2b;
+            color: white;
+            border-color: #555;
+        }
+
+        body.dark .login-btn {
+            background-color: white;
+            color: black;
+        }
+
+        body.dark .theme-btn {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Theme Button -->
+    <button class="theme-btn" onclick="toggleTheme()" id="themeButton">
+        🌙 Dark Mode
+    </button>
+
+    <div class="login-container">
+
+        <h1>Login Form</h1>
+
+        <form action="/login" method="POST">
+
+            <label for="username">User Name</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                required
+            >
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="register-link">
+            <p>Don't have an account?</p>
+            <a href="/register">Register</a>
+        </div>
+
+    </div>
+
+
+    <script>
+        function toggleTheme() {
+
+            document.body.classList.toggle("dark");
+
+            const button = document.getElementById("themeButton");
+
+            if (document.body.classList.contains("dark")) {
+                button.innerHTML = "☀️ Light Mode";
+            } else {
+                button.innerHTML = "🌙 Dark Mode";
+            }
+        }
+    </script>
+
+</body>
+</html>

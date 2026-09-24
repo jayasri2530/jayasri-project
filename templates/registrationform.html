@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Form</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #222;
+            transition: 0.3s;
+        }
+
+        .navbar {
+            background-color: #222;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: #00bcd4;
+        }
+
+        .theme-btn {
+            padding: 9px 15px;
+            border-radius: 6px;
+            border: 1px solid #00bcd4;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 400px;
+            margin: 60px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .register-btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* DARK MODE */
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #000;
+        }
+
+        body.dark-mode .container {
+            background-color: #1e1e1e;
+        }
+
+        body.dark-mode input {
+            background-color: #333;
+            color: white;
+            border-color: #555;
+        }
+
+        body.dark-mode .theme-btn {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <div class="logo">
+            Employee Management System
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/home">Home</a>
+            <a href="/employee">Employees</a>
+            <a href="/add-employee">Add Employee</a>
+            <a href="/search">Search</a>
+
+            <button class="theme-btn"
+                    id="themeButton"
+                    onclick="toggleTheme()">
+                🌙 Dark
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <h2>Registration Form</h2>
+
+        <form action="/register" method="post">
+
+            <label>Full Name</label>
+            <input type="text"
+                   name="fullname"
+                   required>
+
+            <label>Username</label>
+            <input type="text"
+                   name="username"
+                   required>
+
+            <label>Password</label>
+            <input type="password"
+                   name="password"
+                   required>
+
+            <button type="submit"
+                    class="register-btn">
+                Register
+            </button>
+
+        </form>
+
+    </div>
+
+    <script>
+
+        function updateThemeButton() {
+
+            const button =
+                document.getElementById("themeButton");
+
+            if (document.body.classList.contains("dark-mode")) {
+                button.innerHTML = "☀️ Light";
+            } else {
+                button.innerHTML = "🌙 Dark";
+            }
+        }
+
+        function toggleTheme() {
+
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+
+            updateThemeButton();
+        }
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+        }
+
+        updateThemeButton();
+
+    </script>
+
+</body>
+
+</html>
