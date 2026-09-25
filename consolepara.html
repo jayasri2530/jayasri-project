@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p>Hello</p>
+    <p>Welcome</p>
+    <p>Jaya </p>
+    <button id="update">Check</button>
+
+    <script>
+        para=document.getElementByTagName("p")
+        console.log(para)
+          for(let i=0;i<para.length;i++){
+             console.log(i,para[i].textContent)
+          }
+            btn=document.getElementById("update")
+            btn.addEventListener("click",
+                function(){
+                   para[0].textContent="hello jaya"
+                   para[1].textContent="welcome"
+                   para[2].textContent="to vizag"
+
+        for(let i=0;i<para.length;i++){
+        console.log(i,para[i].textContent)
+          }
+          }
+          )
+    </script>
+</body>
+</html>
