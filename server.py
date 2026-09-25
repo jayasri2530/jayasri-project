@@ -247,8 +247,8 @@ def add_employee():
     phone = request.form.get("phone")
     department = request.form.get("department")
     salary = request.form.get("salary")
-    joining_date = request.form.get("address")
-    address = request.form.get("joining_date")
+    address = request.form.get("address")
+    joining_date = request.form.get("joining_date")
 
     print("=================================")
     print("ADDING EMPLOYEE")
