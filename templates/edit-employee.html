@@ -14,55 +14,43 @@
 
         * {
             margin: 0;
-
             padding: 0;
-
             box-sizing: border-box;
         }
 
         body {
             font-family: Arial, sans-serif;
-
             background-color: #f5f5f5;
+            color: #222;
+            transition: 0.3s;
         }
 
         /* ================= NAVBAR ================= */
 
         .navbar {
             background-color: #222;
-
             padding: 15px 30px;
-
             display: flex;
-
             align-items: center;
         }
 
         .logo {
             color: white;
-
             font-size: 22px;
-
             font-weight: bold;
-
             margin-right: auto;
         }
 
         .nav-links {
             display: flex;
-
             align-items: center;
-
             list-style: none;
-
             gap: 20px;
         }
 
         .nav-links a {
             color: white;
-
             text-decoration: none;
-
             font-size: 16px;
         }
 
@@ -70,56 +58,55 @@
             color: #00bcd4;
         }
 
+        /* ================= THEME BUTTON ================= */
+
+        .theme-btn {
+            padding: 9px 15px;
+            border-radius: 6px;
+            border: 1px solid #00bcd4;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
         /* ================= FORM ================= */
 
         .container {
             width: 600px;
-
             max-width: 90%;
-
             margin: 40px auto;
-
             background-color: white;
-
             padding: 30px;
-
             border-radius: 10px;
-
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
         }
 
         h1 {
             text-align: center;
-
             margin-bottom: 25px;
         }
 
         label {
             display: block;
-
             margin-top: 15px;
-
             margin-bottom: 5px;
-
             font-weight: bold;
         }
 
         input,
         textarea {
             width: 100%;
-
             padding: 10px;
-
             border: 1px solid #ccc;
-
             border-radius: 5px;
-
             font-size: 15px;
+            background-color: white;
+            color: #222;
         }
 
         textarea {
             height: 100px;
-
             resize: vertical;
         }
 
@@ -127,21 +114,13 @@
 
         .update-btn {
             width: 100%;
-
             margin-top: 25px;
-
             padding: 12px;
-
             border: none;
-
             background-color: #00bcd4;
-
             color: white;
-
             font-size: 16px;
-
             border-radius: 5px;
-
             cursor: pointer;
         }
 
@@ -153,14 +132,42 @@
 
         .back-btn {
             display: block;
-
             text-align: center;
-
             margin-top: 15px;
-
             text-decoration: none;
-
             color: #333;
+        }
+
+        /* ================= DARK MODE ================= */
+
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #000;
+        }
+
+        body.dark-mode .container {
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        body.dark-mode input,
+        body.dark-mode textarea {
+            background-color: #2b2b2b;
+            color: white;
+            border-color: #555;
+        }
+
+        body.dark-mode .back-btn {
+            color: white;
+        }
+
+        body.dark-mode .theme-btn {
+            background-color: white;
+            color: black;
         }
 
     </style>
@@ -175,16 +182,13 @@
     <nav class="navbar">
 
         <div class="logo">
-
             Employee Management System
-
         </div>
-
 
         <ul class="nav-links">
 
             <li>
-                <a href="/">
+                <a href="/home">
                     Home
                 </a>
             </li>
@@ -196,9 +200,18 @@
             </li>
 
             <li>
-                <a href="/add-employe">
+                <a href="/add-employee">
                     Add Employee
                 </a>
+            </li>
+
+            <li>
+                <button
+                    class="theme-btn"
+                    id="themeButton"
+                    onclick="toggleTheme()">
+                    🌙 Dark
+                </button>
             </li>
 
         </ul>
@@ -213,7 +226,6 @@
         <h1>
             Edit Employee
         </h1>
-
 
         <form
             action="/edit-employee/{{ employee['id'] }}"
@@ -276,7 +288,7 @@
 
 
             <label>
-                Address 
+                Address
             </label>
 
             <textarea
@@ -293,6 +305,7 @@
                 name="joining_date"
                 value="{{ employee['joining_date'] }}"
                 required>
+
 
             <button
                 type="submit"
@@ -313,6 +326,56 @@
         </a>
 
     </div>
+
+
+    <!-- ================= THEME SCRIPT ================= -->
+
+    <script>
+
+        function updateThemeButton() {
+
+            const button =
+                document.getElementById("themeButton");
+
+            if (document.body.classList.contains("dark-mode")) {
+
+                button.innerHTML = "☀️ Light";
+
+            } else {
+
+                button.innerHTML = "🌙 Dark";
+
+            }
+        }
+
+
+        function toggleTheme() {
+
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+
+                localStorage.setItem("theme", "dark");
+
+            } else {
+
+                localStorage.setItem("theme", "light");
+
+            }
+
+            updateThemeButton();
+        }
+
+
+        if (localStorage.getItem("theme") === "dark") {
+
+            document.body.classList.add("dark-mode");
+
+        }
+
+        updateThemeButton();
+
+    </script>
 
 
 </body>
