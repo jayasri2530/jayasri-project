@@ -46,8 +46,8 @@ def create_database():
             phone TEXT NOT NULL,
             department TEXT NOT NULL,
             salary INTEGER NOT NULL,
-            joining_date TEXT NOT NULL,
-            address TEXT
+            address TEXT NOT NULL,
+            joining_date TEXT
         )
     """)
 
@@ -257,8 +257,8 @@ def add_employee():
     print("Phone:", phone)
     print("Department:", department)
     print("Salary:", salary)
-    print("Joining Date:", address)
-    print("Address:", joining_date)
+    print("Address:", address)
+    print("Joining Date:", joining_date)
     print("=================================")
 
     connection = sqlite3.connect("users.db")
@@ -437,9 +437,9 @@ def edit_employee(id):
 
     salary = request.form["salary"]
 
-    joining_date = request.form["address"]
+    address = request.form["address"]
 
-    address = request.form["joining_date"]
+    joining_date = request.form["joining_date"]
 
     connection = sqlite3.connect("users.db")
 
@@ -525,7 +525,7 @@ def search_employee():
 # =========================================
 # START FLASK SERVER
 # =========================================
+create_database()
 
 if __name__ == "__main__":
-    create_database()
     app.run(debug=True)
